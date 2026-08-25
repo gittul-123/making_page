@@ -1,0 +1,98 @@
+:root {
+    --main-color: #6682fcbe;
+    --bg-color:white; 
+    --text-color: #333;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--main-color);
+    color: black;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.about {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.about img {
+    width: 250px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  justify-content: center;
+}
+
+.skill {
+  padding: 1rem 1.5rem;
+  background-color: var(--main-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.skill-name {
+  display: none;
+}
+
+.skill:hover .skill-name {
+  display: inline;
+}
+
+.feather-icon {
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.skill:hover .feather-icon {
+  transform: rotate(15deg);
+}
+

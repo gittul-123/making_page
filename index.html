@@ -1,24 +1,72 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
+<header>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>제목</title>
-</head>
+</header>
 <body>
     <header>
-        (로고)
+        <a href="#hero" class="logo">LOGO</a>
         <nav>
-            (메뉴링크들)
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </nav>
     </header>
 
     <main>
-        <section>Hero</section>
-        <section>About</section>
-        <section>Skills</section>
-        <section>Projects</section>
-        <section>Contact</section>
+        <section id="hero" class="hero">
+            <h1>Hello</h1>
+            <p>I'm gittul-123</p>
+            <a href="#projects" class="btn">View Projects</a>
+            <a href="#contact" class="btn">Contact Me</a>
+        </section>
+        <section id="about" class="about">
+            <img src="images/feather_gittul-123.jpg" alt="Profile Picture of gittul-123, but it's feather.">
+            <div>
+                <h2>About Me</h2>
+                <p>I'm a gittul-123. YES I'm a feather.</p>
+            </div>   
+        </section>
+        <section id="skills" class="skills">
+            <h2>Skills</h2>
+            <ul>
+                <li class="skill">
+                    <i class="fa-solid fa-feather feather-icon" aria-hidden="true"></i>
+                    <span class="skill-name">HTML</span>
+                </li>
+                <li class="skill">
+                    <i class="fa-solid fa-feather feather-icon" aria-hidden="true"></i>
+                    <span class="skill-name">CSS</span>
+                </li>
+                <li class="skill">
+                    <i class="fa-solid fa-feather feather-icon" aria-hidden="true"></i>
+                    <span class="skill-name">JavaScript</span>
+                </li>
+                <li class="skill">
+                    <i class="fa-solid fa-feather feather-icon" aria-hidden="true"></i>
+                    <span class="skill-name">Python</span>  
+                </li>
+                <li class="skill">
+                    <i class="fa-solid fa-feather feather-icon" aria-hidden="true"></i>
+                    <span class="skill-name">Git & GitHub</span>
+                </li>
+            </ul>
+        </section>
+        <section id="projects" class="projects">
+            Projects
+        </section>
+        <section id="contact" class="contact">
+            Contact
+        </section>
     </main>
 
     <footer>
