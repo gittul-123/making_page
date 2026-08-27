@@ -87,3 +87,30 @@ const nav = document.querySelector('nav');
 hamburger.addEventListener('click', function () {
   nav.classList.toggle('open');
 });
+
+
+const themeToggle = document.querySelector('.theme-toggle');
+const html = document.documentElement;
+
+const savedTheme = localStorage.getItem('theme');
+
+const themeIcon = themeToggle.querySelector("i");
+
+if (savedTheme === 'dark') {
+  html.setAttribute('data-theme', 'dark')
+}
+
+
+themeToggle.addEventListener('click', function () {
+  if (html.getAttribute('data-theme') === 'dark') {
+    html.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    themeIcon.classList.remove('fa-sun');
+    themeIcon.classList.add('fa-moon');
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    themeIcon.classList.remove('fa-moon');
+    themeIcon.classList.add('fa-sun');
+  }
+});
