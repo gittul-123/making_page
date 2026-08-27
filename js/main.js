@@ -118,3 +118,33 @@ themeToggle.addEventListener('click', function () {
     themeIcon.classList.add('fa-sun');
   }
 });
+
+const scrollTopBtn = document.querySelector('.scroll-top');
+
+window.addEventListener('scroll', function() {
+  if (this.window.scrollY > 300) {
+    scrollTopBtn.style.display = 'block';
+  } else {
+    scrollTopBtn.style.display = 'none';
+  }
+});
+
+scrollTopBtn.addEventListener('click', function() {
+  window.scrollTo({ top: 0, behavior: 'smooth'});
+});
+
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', function() {
+  if (this.window.scrollY > 300) {
+    scrollTopBtn.style.display = 'block';
+  } else {
+    scrollTopBtn.style.display = 'none';
+  }
+
+  if (window.scrollY > 60) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
