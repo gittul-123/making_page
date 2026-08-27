@@ -44,6 +44,7 @@ form.addEventListener('submit', function (e){
 
   const emailValue = document.querySelector('#email').value;
   const emailError = document.querySelector('#email-error');
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const messageValue = document.querySelector('#message').value;
   const messageError = document.querySelector('#message-error');
@@ -59,6 +60,9 @@ form.addEventListener('submit', function (e){
   if (emailValue === '') {
     emailError.textContent = '이메일 주소를 입력해주세요';
     emailError.style.display = 'block';
+  } else if (!emailPattern.test(emailValue)) {
+    emailError.textContent = '올바른 이메일 형식이 아닙니다';
+    emailError.style.display = 'block';
   } else {
     emailError.textContent = '';
     emailError.style.display = 'none';
@@ -73,7 +77,7 @@ form.addEventListener('submit', function (e){
   }
 
   
-  if (nameValue !== '' && emailValue !== '' && messageValue !== '') {
+  if (nameValue !== '' && emailPattern.test(emailValue) && messageValue !== '') {
     alert('메시지가 전송되었습니다');
     form.reset();
   }
