@@ -1,8 +1,7 @@
 console.log("main.js 연결됨!");
 const heroBtn = document.querySelector('.btn');
-console.log(heroBtn);
 
-heroBtn.addEventListener('click', function () {
+heroBtn.addEventListener('click', () => {
   console.log('버튼 클릭됨!');
 });
 
@@ -11,7 +10,6 @@ async function loadProjects() {
   const errorMessage = document.querySelector('.error-message');
   const emptyMessage = document.querySelector('.empty-message');
   const projectList = document.querySelector('.project-list');
-
 
   loadingMessage.style.display = 'block';
   errorMessage.style.display = 'none';
@@ -29,44 +27,36 @@ async function loadProjects() {
 
     loadingMessage.style.display = 'none';
 
-    if (data.length == 0) {
+    if (data.length === 0) {
       emptyMessage.style.display = 'block';
       return;
     }
 
-      data.forEach(function (repo) {
-        const html = `
-          <div class="project-card">
-            <h3>${repo.name}</h3>
-            <p>${repo.description ? repo.description : '설명이 없습니다.'}</p>
-            <a href="${repo.html_url}" target="_blank">View on GitHub</a>
-          </div>
-        `;
-        projectList.innerHTML += html;
-      });
+    const cardsHtml = data.map((repo) => {
+      const { name, description, html_url } = repo;
+      return `
+        <div class="project-card">
+          <h3>${name}</h3>
+          <p>${description ? description : '설명이 없습니다.'}</p>
+          <a href="${html_url}" target="_blank">View on GitHub</a>
+        </div>
+      `;
+    });
+
+    projectList.innerHTML = cardsHtml.join('');
 
   } catch (error) {
     loadingMessage.style.display = 'none';
     errorMessage.style.display = 'block';
     console.log(error);
   }
-
 }
 
 loadProjects();
 
-
 const form = document.querySelector('#contact-form');
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-  const nameValue = document.querySelector('#name').value;
-  if (nameValue === '') {
-  console.log('이름을 입력해주세요');
-  }
-});
-
-form.addEventListener('submit', function (e){
+form.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const nameValue = document.querySelector('#name').value;
@@ -106,36 +96,29 @@ form.addEventListener('submit', function (e){
     messageError.style.display = 'none';
   }
 
-  
   if (nameValue !== '' && emailPattern.test(emailValue) && messageValue !== '') {
     alert('메시지가 전송되었습니다');
     form.reset();
   }
-
 });
-
 
 const hamburger = document.querySelector('.hamburger');
 const nav = document.querySelector('nav');
 
-hamburger.addEventListener('click', function () {
+hamburger.addEventListener('click', () => {
   nav.classList.toggle('open');
 });
 
-
 const themeToggle = document.querySelector('.theme-toggle');
 const html = document.documentElement;
-
 const savedTheme = localStorage.getItem('theme');
-
-const themeIcon = themeToggle.querySelector("i");
+const themeIcon = themeToggle.querySelector('i');
 
 if (savedTheme === 'dark') {
-  html.setAttribute('data-theme', 'dark')
+  html.setAttribute('data-theme', 'dark');
 }
 
-
-themeToggle.addEventListener('click', function () {
+themeToggle.addEventListener('click', () => {
   if (html.getAttribute('data-theme') === 'dark') {
     html.setAttribute('data-theme', 'light');
     localStorage.setItem('theme', 'light');
@@ -150,23 +133,10 @@ themeToggle.addEventListener('click', function () {
 });
 
 const scrollTopBtn = document.querySelector('.scroll-top');
-
-window.addEventListener('scroll', function() {
-  if (this.window.scrollY > 300) {
-    scrollTopBtn.style.display = 'block';
-  } else {
-    scrollTopBtn.style.display = 'none';
-  }
-});
-
-scrollTopBtn.addEventListener('click', function() {
-  window.scrollTo({ top: 0, behavior: 'smooth'});
-});
-
 const header = document.querySelector('header');
 
-window.addEventListener('scroll', function() {
-  if (this.window.scrollY > 300) {
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
     scrollTopBtn.style.display = 'block';
   } else {
     scrollTopBtn.style.display = 'none';
@@ -179,16 +149,20 @@ window.addEventListener('scroll', function() {
   }
 });
 
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
 const sections = document.querySelectorAll('section');
 
-const observer = new IntersectionObserver(function (entries) {
-  entries.forEach(function (entry) {
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
     }
   });
-}, {threshold: 0.2});
+}, { threshold: 0.2 });
 
-sections.forEach(function (section) {
+sections.forEach((section) => {
   observer.observe(section);
 });
