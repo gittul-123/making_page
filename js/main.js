@@ -7,24 +7,54 @@ heroBtn.addEventListener('click', function () {
 });
 
 async function loadProjects() {
-  const response = await fetch('https://api.github.com/users/gittul-123/repos');
-  const data = await response.json();
-  
+  const loadingMessage = document.querySelector('.loading-message');
+  const errorMessage = document.querySelector('.error-message');
+  const emptyMessage = document.querySelector('.empty-message');
   const projectList = document.querySelector('.project-list');
 
-  data.forEach(function (repo) {
-    const html = `
-      <div class="project-card">
-        <h3>${repo.name}</h3>
-        <p>${repo.description ? repo.description : '설명이 없습니다.'}</p>
-        <a href="${repo.html_url}" target="_blank">View on GitHub</a>
-      </div>
-    `;
-    projectList.innerHTML += html;
-  });
+
+  loadingMessage.style.display = 'block';
+  errorMessage.style.display = 'none';
+  emptyMessage.style.display = 'none';
+  projectList.innerHTML = '';
+
+  try {
+    const response = await fetch('https://api.github.com/users/gittul-123/repos');
+
+    if (!response.ok) {
+      throw new Error('API 요청 실패');
+    }
+
+    const data = await response.json();
+
+    loadingMessage.style.display = 'none';
+
+    if (data.length == 0) {
+      emptyMessage.style.display = 'block';
+      return;
+    }
+
+      data.forEach(function (repo) {
+        const html = `
+          <div class="project-card">
+            <h3>${repo.name}</h3>
+            <p>${repo.description ? repo.description : '설명이 없습니다.'}</p>
+            <a href="${repo.html_url}" target="_blank">View on GitHub</a>
+          </div>
+        `;
+        projectList.innerHTML += html;
+      });
+
+  } catch (error) {
+    loadingMessage.style.display = 'none';
+    errorMessage.style.display = 'block';
+    console.log(error);
+  }
+
 }
 
 loadProjects();
+
 
 const form = document.querySelector('#contact-form');
 
@@ -147,4 +177,18 @@ window.addEventListener('scroll', function() {
   } else {
     header.classList.remove('scrolled');
   }
+});
+
+const sections = document.querySelectorAll('section');
+
+const observer = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {threshold: 0.2});
+
+sections.forEach(function (section) {
+  observer.observe(section);
 });
