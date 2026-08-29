@@ -1,3 +1,8 @@
+
+* {
+  box-sizing: border-box;
+}
+
 :root {
     --main-color: #6682fcbe;
     --bg-color:white; 
@@ -28,6 +33,7 @@ header {
     z-index: 100;
     transition: background-color 0.3s ease;
     min-height: 40px;
+    box-sizing: border-box;
 }
 
 .logo {
@@ -247,10 +253,6 @@ nav {
 
   .hamburger {
     display: block;
-  }
-
-  .theme-toggle {
-    
   }
 
   nav ul {
