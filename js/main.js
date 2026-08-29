@@ -106,7 +106,7 @@ const hamburger = document.querySelector('.hamburger');
 const nav = document.querySelector('nav');
 
 hamburger.addEventListener('click', () => {
-  nav.classList.toggle('open');
+  nav.classList.toggle('active');
 });
 
 const themeToggle = document.querySelector('.theme-toggle');
@@ -165,4 +165,21 @@ const observer = new IntersectionObserver((entries) => {
 
 sections.forEach((section) => {
   observer.observe(section);
+});
+
+const emailInput = document.querySelector('#email');
+
+emailInput.addEventListener('input', () => {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailError = document.querySelector('#email-error');
+
+  if (emailInput.value === '') {
+    emailError.style.display = 'none';
+  } else if (!emailPattern.test(emailInput.value)) {
+    emailError.textContent = '올바른 이메일 형식이 아닙니다';
+    emailError.style.display = 'block';
+  } else {
+    emailError.textContent = '';
+    emailError.style.display = 'none';
+  }
 });

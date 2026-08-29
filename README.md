@@ -25,3 +25,9 @@
 
 ### 다크모드
 ![다크모드 화면](images/screenshot-dark.png)
+
+## 주요 기준값
+
+- 스크롤 탑 버튼: 스크롤 300px 이상에서 표시
+- 네비게이션 배경색 변경: 스크롤 60px 이상에서 적용
+- 스크롤 애니메이션(Intersection Observer): threshold 0.2 (요소의 20% 이상 보이면 발동)
