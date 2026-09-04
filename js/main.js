@@ -54,6 +54,12 @@ async function loadProjects() {
 
 loadProjects();
 
+const retryBtn = document.querySelector('.retry-btn');
+retryBtn.addEventListener('click', () => {
+  loadProjects();
+});
+
+
 const form = document.querySelector('#contact-form');
 
 form.addEventListener('submit', (e) => {
